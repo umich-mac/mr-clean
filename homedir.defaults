@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# homedir.defaults: Default settings for home directory management. To
+#                   overwrite, define settings in /etc/homedir.defaults.local.
+
+# in a format that 'find' can understand
+MAXHOMELIFE="48 hours ago"
+
+# Maximum disk space use, in percent
+MAXDISKUSAGE="80"
+
+# Get local defaults, if present.
+LOCAL_DEFAULTS="/private/etc/homedir.defaults.local"
+
+if /bin/test -f "${LOCAL_DEFAULTS}" -a -x "${LOCAL_DEFAULTS}"; then
+  . "${LOCAL_DEFAULTS}"
+fi
+

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Hide a user's home directory and set it to mode 700 when they log out
+if [ "x${1}" != "x" ]; then # provided username is non-zero-length
+  USER="${1}"
+
+  USER_HOME="$(dscl -raw /Search -read /Users/${1} dsAttrTypeStandard:NFSHomeDirectory | awk '{print $2}' | sed -e 's/users/Users/g')"
+
+  # Touch logging-out user's home directory so it isn't deleted
+  if [ -d "${USER_HOME}" ]; then
+    # Prevent previously open applications from restarting on login
+    rm "${USER_HOME}"/Library/Preferences/ByHost/com.apple.loginwindow.*
+    touch "${USER_HOME}"
+    chmod 0700 "${USER_HOME}"
+    chflags hidden "${USER_HOME}"
+  fi
+fi
+
+exit 0

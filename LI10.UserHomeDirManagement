@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Manage User home directory on login.
+# If a previously-saved homedir exists, unhide it
+
+# If the username is blank, exit with an error.
+if [ -z "${1}" ]; then
+  logger -is "Username is zero-length."
+  exit 1
+fi
+
+# Get the User Home
+USER_HOME="$(dscl -raw /Search -read /Users/${1} dsAttrTypeStandard:NFSHomeDirectory | awk '{print $2}' | sed -e 's/users/Users/g' | head -n1)"
+echo "USER_HOME is $USER_HOME"
+
+# Unhide directory if it's there already
+if [ -d "${USER_HOME}" ]; then
+  chflag nohidden "${USER_HOME}"
+fi
+
+
+exit 0
