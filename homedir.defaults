@@ -4,7 +4,7 @@
 #                   overwrite, define settings in /etc/homedir.defaults.local.
 
 # in a format that 'find' can understand
-MAXHOMELIFE="48 hours ago"
+MAXHOMELIFE="72 hours ago"
 
 # Maximum disk space use, in percent
 MAXDISKUSAGE="80"
