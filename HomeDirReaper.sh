@@ -12,7 +12,7 @@ MAXDISKUSAGE="85"
 remove_user() {
   # Remove a user's home directory and caches.
   OLD_USER="${1}"
-  USER_FOLDER=$(/usr/local/izzy/tools/home-directory-for-use ${OLD_USER})
+  USER_FOLDER=$(/usr/local/izzy/tools/home-directory-for-user ${OLD_USER})
 
   # Ensure they haven't locked anything in their home folder, then delete it.
   logger -is "Removing home folder ${USER_FOLDER}..."
