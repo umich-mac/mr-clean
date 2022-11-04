@@ -40,7 +40,7 @@ update_disk_usage() {
 
 # PHASE ONE
 # Delete each folder in /Users that's older than the maximum time.
-for possibleUser in $(/usr/local/izzy/tools/list-local-users --skip-admins) do
+for possibleUser in $(/usr/local/izzy/tools/list-local-users --skip-admins); do
 
     userDir=$(/usr/local/izzy/tools/home-directory-for-user ${possibleUser})
     if [[ $(find "$userDir" -maxdepth 0 -not -newermt "${MAXHOMELIFE}" -print) ]]; then
