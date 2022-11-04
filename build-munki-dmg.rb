@@ -100,7 +100,7 @@ plist = {
       mode: file[:mode]
     }
   end,
-  "minimum_os_version" => "10.7.0",
+  "minimum_os_version" => "10.15.0",
   "name" => "UserHomeDirManagement",
   "preinstall_script" => File.read("preinstall.sh"),
   "uninstall_method" => "remove_copied_items",
